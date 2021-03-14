@@ -1,5 +1,7 @@
 /* 
-~~~~~~~~~~~~~~~~~~~~~~~~ Variable Scope ~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                        Variable Scope
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                
 */
 
 function getDate() {
@@ -50,3 +52,53 @@ console.log(discountPrices([100, 200, 300], 0.5)); // [ 50, 100, 150 ]
 // var discountedPrice
 // var finalPrice
 // if not declared with var, variable name will be a property of global scope
+
+/* 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                    var vs let vs const
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
+var: function scoped
+let: block scoped, any { }
+
+both declaration get hoisted to the top
+
+use a variable before declaration:
+var => undefined
+let => ReferenceError
+
+const: same as let, cannot reassign value
+
+
+*/
+
+function discountPrices(prices, discount) {
+  let discounted = [];
+
+  for (let i = 0; i < prices.length; i++) {
+    let discountedPrice = prices[i] * (1 - discount);
+    let finalPrice = Math.round(discountedPrice * 100) / 100;
+    discounted.push(finalPrice);
+  }
+
+  //   variables inside for loop only accessible for loop's { block scope}
+  console.log(i); // ReferenceError: i is not defined
+  console.log(discountedPrice);
+  console.log(finalPrice);
+
+  return discounted;
+}
+
+console.log(discountPrices([100, 200, 300], 0.5));
+
+// --------------------------------------------------------
+const person = {
+  name: "First Last",
+};
+
+person.name = "Name reassigned";
+console.log(
+  "🚀 ~ file: variable-declarations.js ~ line 95 ~ person.name",
+  person.name,
+); // Name reassigned
+
+person = {}; // TypeError: Assignment to constant variable.
