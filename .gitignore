@@ -258,7 +258,7 @@ GitHub.sublime-settings
 .history
 
 ## Code Runner extension
-tempCodeRunnerFile.py
+tempCodeRunnerFile.*
 
 ### Windows ###
 # Windows thumbnail cache files
